@@ -1,0 +1,11 @@
+<ul>
+  <li><a href="">Pocetna stranica</a></li>
+  <li><a href="/namestaj">Asortiman</a></li>
+
+  <div *ngIf="authService.getUser()">
+    <li><a href="/create">Kreiranje komada</a></li>
+  </div>
+  <li style = "float:right"><a href="/login">Prijava</a></li>
+
+</ul>
+<router-outlet></router-outlet>

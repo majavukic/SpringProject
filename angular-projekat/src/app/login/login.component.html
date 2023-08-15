@@ -1,0 +1,27 @@
+<h1>Prijavljivanje</h1>
+
+<div class="alert alert-danger" role="alert" *ngIf="message">
+  {{ message }}
+</div>
+
+<form class="form-inline" *ngIf="!authService.getUser()">
+  <div class="form-group">
+    <label for="username">Korisnik:</label>
+    <input class="form-control" id="username" name="username" #username>
+  </div>
+
+  <div class="form-group">
+    <label for="password">&nbsp;Lozinka:</label>
+    <input class="form-control" id="password" type="password" name="password" #password>
+    &nbsp;
+  </div>
+
+  <a class="btn btn-outline-dark" (click)="login(username.value, password.value)">
+    Prijavljivanje
+  </a>
+</form>
+
+<div class="well" *ngIf="authService.getUser()">
+  Prijavljeni ste kao: <b>{{ authService.getUser() }}</b>
+  <a href (click)="logout()"> Odjavljivanje</a>
+</div>

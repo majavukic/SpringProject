@@ -1,0 +1,27 @@
+<span *ngIf="authService.getUser()">
+  <p>Uneti izmene i odabrati komad namestaja za izmenu</p>
+</span>
+<input [(ngModel)]="naziv" placeholder="naziv" type="text" />
+
+<span *ngIf="authService.getUser()">
+  <input [(ngModel)]="boja" placeholder="boja" type="text" />
+  <input [(ngModel)]="cena" placeholder="cena" type="text" />
+  <input [(ngModel)]="slika" placeholder="slika" type="text" />
+  <!-- <input [(ngModel)]="materijal" placeholder="materijal" type="text"> -->
+</span>
+<button (click)="getByName()">Filter</button>
+<div *ngIf="namestaj | async as komad">
+  <ul *ngFor="let k of komad" class="no-bullets">
+    <li>
+      <img src="{{ k.slika }}" style="border: 5px solid {{ k.boja }}" />
+      {{ k.naziv }}
+      {{ k.cena }}
+      <!-- {{ k.materijal }} -->
+      <div *ngIf="authService.getUser()">
+        <button (click)="delete(k.id)">Delete</button>
+        <span class="divider"></span>
+        <button (click)="edit(k.id)">Update</button>
+      </div>
+    </li>
+  </ul>
+</div>
